@@ -1,0 +1,32 @@
+Link: https://www.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1
+
+DFS OF A GRAPH:
+1) Using Recursion
+2) Using Stack
+
+Using Recursion:
+class Solution {
+    
+    public static void dfs(ArrayList<ArrayList<Integer>> adj , boolean vis[] , int curr , ArrayList<Integer> res ){
+        
+        res.add(curr);
+        vis[curr] = true;
+        for(int i=0 ; i<adj.get(curr).size() ; i++){
+            int neigh = adj.get(curr).get(i);
+            if(!vis[neigh]){
+                dfs(adj , vis , neigh , res);
+            }
+        }
+    }
+    public ArrayList<Integer> dfs(ArrayList<ArrayList<Integer>> adj) {
+        boolean vis[] = new boolean[adj.size()];
+        ArrayList<Integer> res = new ArrayList<>();
+        dfs(adj , vis , 0 ,res);
+    
+        return res;
+    }
+}
+
+
+
+
