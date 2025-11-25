@@ -1,7 +1,7 @@
 
 # 🚀 Province Count (Number of Connected Components) — DFS Solution
 
-### **Java Code (Clean & Well-Formatted)**
+### **Code **
 
 ```java
 class Solution {
