@@ -1,0 +1,49 @@
+ class Solution {
+
+    public ArrayList<ArrayList<Integer>> getComponents(int V, int[][] edges) {
+
+        // Step 1: Create adjacency list
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+        for (int i = 0; i < V; i++) {             // Traditional loop
+            adj.add(new ArrayList<>());
+        }
+
+        // Add edges (undirected graph)
+        for (int i = 0; i < edges.length; i++) {  // Traditional loop
+            int u = edges[i][0];  //e[0]
+            int v = edges[i][1];   //e[1]
+            adj.get(u).add(v);
+            adj.get(v).add(u);
+        }
+
+        boolean[] vis = new boolean[V];
+        ArrayList<ArrayList<Integer>> components = new ArrayList<>();
+
+        // Step 2: Find components
+        for (int i = 0; i < V; i++) {             // Traditional loop
+            if (!vis[i]) {
+                ArrayList<Integer> comp = new ArrayList<>();
+                dfs(i, adj, vis, comp);
+                components.add(comp);
+            }
+        }
+
+        return components;
+    }
+
+    // DFS helper
+    private void dfs(int node, ArrayList<ArrayList<Integer>> adj, boolean[] vis, ArrayList<Integer> comp) {
+
+        vis[node] = true;
+        comp.add(node);
+
+        // Traditional loop for neighbors
+        for (int i = 0; i < adj.get(node).size(); i++) {
+            int nei = adj.get(node).get(i);
+
+            if (!vis[nei]) {
+                dfs(nei, adj, vis, comp);
+            }
+        }
+    }
+}
